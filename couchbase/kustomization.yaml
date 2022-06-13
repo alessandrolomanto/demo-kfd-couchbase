@@ -1,0 +1,22 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: default
+
+resources:
+  - resources/couchbase.yaml
+  - resources/couchbase-cluster.yaml
+  - resources/couchbase-ingress.yaml
+  - resources/service-monitor.yaml
+  - resources/velero-backup.yaml
+#  - resources/job-import-data.yaml
+
+generatorOptions:
+  labels:
+    grafana-sighup-dashboard: couchbase
+  disableNameSuffixHash: true
+
+configMapGenerator:
+  - name: dashboard-couchbase-basic
+    files:
+      - dashboard/dashboard.json
+

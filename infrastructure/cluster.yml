@@ -1,0 +1,40 @@
+kind: Cluster
+metadata:
+  name: fury-eks-demo
+spec:
+  version: 1.21
+  network: vpc-0162866614d172623
+  subnetworks:
+  - subnet-0034b6204767243a9
+  - subnet-03eeb13949d3ff67d
+  - subnet-0f608384bd96fa7d3
+  dmzCIDRRange:
+  - 10.0.0.0/16
+  sshPublicKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDM56GfmZoUX5HRHLaSkc5KIGi7S/MYdyQFKGUjzQDeI0/9+dA9Haf1/nYr5Z7fK2782WtMuTRPT57myARE+mIsS/8CTmV+VRddKRWPurtTuR2hR4mg3HhmfMe/SXfiK1NQmj1YsqqIMzK7QNZdhRT8ILQijTqGhYgJnGiexaovj6opDTXCe6JUeHf6HsJNGTqjuqqf75uve14kHKE/TVg87ZwsA8hxM1Hz0aWbWRyxrDnGrfcnbjFA2Pcgv207XQ98v2hx3KjENrt2r7JI93R2WKiUtaTpJJiM06xOJFipTJgY7o8+8K0pCirHxDu3G7AlQzIQca0qK6suEvgYkhAR
+  nodePools:
+  - name: fury
+    version: null
+    minSize: 3
+    maxSize: 3 
+    instanceType: t3.large
+    volumeSize: 50
+  - name: data-servers
+    version: null
+    minSize: 3
+    maxSize: 3 
+    instanceType: t3.large
+    volumeSize: 50
+  - name: index-servers
+    version: null
+    minSize: 2
+    maxSize: 2 
+    instanceType: t3.large
+    volumeSize: 50
+executor:
+  # state:
+  #   backend: s3
+  #   config:
+  #     bucket: <S3_BUCKET>
+  #     key: fury/cluster
+  #     region: <S3_BUCKET_REGION>
+provisioner: eks

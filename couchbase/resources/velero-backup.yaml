@@ -1,0 +1,56 @@
+---
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  name: couchbase
+  namespace: kube-system
+spec:
+  schedule: "0 1 * * *"
+  template:
+    includedNamespaces:
+    - 'default'
+    excludedNamespaces: null
+    includedResources:
+    - couchbaseclusters.couchbase.com
+    - couchbasebuckets.couchbase.com
+    - persistentvolumes
+    - persistentvolumeclaims
+    - secrets
+    - deployments
+    - roles.rbac.authorization.k8s.io
+    - rolebindings.rbac.authorization.k8s.io
+    - serviceaccounts
+    - configmaps
+    excludedResources: null
+    includeClusterResources: true
+    labelSelector: null
+    snapshotVolumes: true
+    storageLocation: default
+    volumeSnapshotLocations:
+    - default
+    ttl: 720h0m0s
+    hooks:
+      resources: []
+---
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  name: manifests
+  namespace: kube-system
+spec:
+  schedule: "*/15 * * * *"
+  template:
+    includedNamespaces:
+    - '*'
+    excludedNamespaces: null
+    includedResources:
+    - '*'
+    excludedResources: null
+    includeClusterResources: true
+    labelSelector: null
+    snapshotVolumes: false
+    storageLocation: default
+    volumeSnapshotLocations: []
+    ttl: 720h0m0s
+    hooks:
+      resources: []

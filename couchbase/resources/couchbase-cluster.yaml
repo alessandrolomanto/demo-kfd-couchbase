@@ -1,0 +1,67 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cb-example-auth
+type: Opaque
+data:
+  username: QWRtaW5pc3RyYXRvcg==  # Administrator
+  password: cGFzc3dvcmQ=          # password
+---
+apiVersion: couchbase.com/v2
+kind: CouchbaseCluster
+metadata:
+  name: cb-example  
+spec:
+  image: couchbase/server:7.0.2
+  #image: couchbase/server:6.6.5
+  monitoring:
+    prometheus:
+      enabled: true
+      image: couchbase/exporter:1.0.6
+  security:
+    adminSecret: cb-example-auth
+  networking:
+    exposeAdminConsole: true
+    # exposedFeatureServiceType: LoadBalancer
+    adminConsoleServices:
+    - data
+    # - index
+    # - query
+  buckets:
+    managed: true
+  servers:
+  - size: 3
+    name: data_service
+    services:
+      - data
+    pod:
+      spec:
+        nodeSelector:
+          sighup.io/node_pool: "data-servers"
+        tolerations:
+        - key: sighup.io/node_pool
+          value: data-servers
+          operator: Equal
+          effect: NoSchedule
+  - size: 2
+    name: index_service
+    services:
+    - index
+    - query
+    pod:
+      spec:
+        nodeSelector:
+          sighup.io/node_pool: "index-servers"
+        tolerations:
+        - key: sighup.io/node_pool
+          value: index-servers
+          operator: Equal
+          effect: NoSchedule
+---
+apiVersion: couchbase.com/v2
+kind: CouchbaseBucket
+metadata:
+  name: default  
+spec:
+  memoryQuota: 128Mi

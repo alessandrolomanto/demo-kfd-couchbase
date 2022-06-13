@@ -1,0 +1,9 @@
+install:
+  # -- Install the couchbase operator
+  couchbaseOperator: true
+  # -- Install the admission controller
+  admissionController: false
+  # -- Install couchbase cluster
+  couchbaseCluster: false
+  # -- Install sync gateway
+  syncGateway: false

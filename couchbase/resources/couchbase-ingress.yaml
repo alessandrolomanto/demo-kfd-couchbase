@@ -1,0 +1,25 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/affinity: cookie 
+    nginx.ingress.kubernetes.io/affinity-mode: persistent
+    forecastle.stakater.com/expose: "true"
+    forecastle.stakater.com/appName: "Couchbase"
+    forecastle.stakater.com/icon: "https://github.com/stakater/ForecastleIcons/raw/master/stakater-big.png"
+  namespace: default
+  name: couchbase
+spec:
+  rules:
+    - host: couchbase.fury.info
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: cb-example-ui
+                port: 
+                  number: 8091
