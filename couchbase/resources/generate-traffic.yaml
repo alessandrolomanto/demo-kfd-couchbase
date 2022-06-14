@@ -1,0 +1,12 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pillowfight
+spec:
+  template:
+    spec:
+      containers:
+        - name: default-sample
+          image: couchbase/server:7.0.2
+          command: ["cbc-pillowfight","-U", "couchbase://cb-example/default","-I", "10000", "-B", "1000", "-c", "10000", "-t", "1", "-u", "Administrator", "-P", "password"]
+      restartPolicy: OnFailure

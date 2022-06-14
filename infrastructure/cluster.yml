@@ -3,11 +3,11 @@ metadata:
   name: fury-eks-demo
 spec:
   version: 1.21
-  network: vpc-0162866614d172623
+  network: vpc-03d7847d163f0b11c
   subnetworks:
-  - subnet-0034b6204767243a9
-  - subnet-03eeb13949d3ff67d
-  - subnet-0f608384bd96fa7d3
+  - subnet-0fe0bf473ab544585
+  - subnet-0435e45ca3700bf9c
+  - subnet-0532fa16e34b727ba
   dmzCIDRRange:
   - 10.0.0.0/16
   sshPublicKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDM56GfmZoUX5HRHLaSkc5KIGi7S/MYdyQFKGUjzQDeI0/9+dA9Haf1/nYr5Z7fK2782WtMuTRPT57myARE+mIsS/8CTmV+VRddKRWPurtTuR2hR4mg3HhmfMe/SXfiK1NQmj1YsqqIMzK7QNZdhRT8ILQijTqGhYgJnGiexaovj6opDTXCe6JUeHf6HsJNGTqjuqqf75uve14kHKE/TVg87ZwsA8hxM1Hz0aWbWRyxrDnGrfcnbjFA2Pcgv207XQ98v2hx3KjENrt2r7JI93R2WKiUtaTpJJiM06xOJFipTJgY7o8+8K0pCirHxDu3G7AlQzIQca0qK6suEvgYkhAR

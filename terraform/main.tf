@@ -10,6 +10,6 @@ terraform {
 module "velero" {
   source             = "../vendor/modules/dr/eks-velero"
   backup_bucket_name = "fury-eks-demo-velero"
-  oidc_provider_url  = "oidc.eks.eu-central-1.amazonaws.com/id/2CB638CE54F56687D21389EE5805F8F6"
+  oidc_provider_url  = "oidc.eks.eu-central-1.amazonaws.com/id/FDA50255601FA42F78A34F16FA3D102B"
 
 }

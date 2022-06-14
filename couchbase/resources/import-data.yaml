@@ -10,16 +10,3 @@ spec:
         image: couchbase/server:7.0.2
         command: ["/opt/couchbase/bin/cbdocloader", "-c", "cb-example-ui.default", "-u", "Administrator", "-p", "password", "-b" ,"default", "-m", "100", "-d", "/opt/couchbase/samples/travel-sample.zip"]
       restartPolicy: Never
----
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: pillowfight
-spec:
-  template:
-    spec:
-      containers:
-        - name: default-sample
-          image: couchbase/server:7.0.2
-          command: ["cbc-pillowfight","-U", "couchbase://cb-example/default","-I", "10000", "-B", "1000", "-c", "10000", "-t", "1", "-u", "Administrator", "-P", "password"]
-      restartPolicy: OnFailure
